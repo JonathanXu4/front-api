@@ -25,12 +25,10 @@
             '<table class="table table-bordered table-hover"> \n' +
             '   <thead>\n' +
             '       <tr>\n' +
-            '           <th scope="col">First Name</th> \n'+
-            '           <th scope="col">Last Name</th> \n'+
-            '           <th scope="col">Phone</th> \n'+
-            '           <th scope="col">Email</th> \n'+
-            '           <th scope="col">Birthday</th> \n'+
-            '           <th scope="col">Can Call Anytime</th> \n'+
+            '           <th scope="col">Name</th> \n'+
+            '           <th scope="col">Author</th> \n'+
+            '           <th scope="col">ISBN</th> \n'+
+            '           <th scope="col">Price</th> \n'+
             '       </tr>\n' +
             '   </thead>\n' +
             '   <tbody>\n';
@@ -38,12 +36,10 @@
         for (let friend in data){
             table +=
                 '       <tr>\n' +
-                '           <td>' + data[friend]["firstName"]+  '</td>\n' +
-                '           <td>' + data[friend]["lastName"]+  '</td>\n' +
-                '           <td>' + data[friend]["phone"]+  '</td>\n' +
-                '           <td>' + data[friend]["email"]+  '</td>\n' +
-                '           <td>' + data[friend]["birthday"]+  '</td>\n' +
-                '           <td>' + (data[friend]["callAnytime"]?"Yes":"No") +  '</td>\n' +
+                '           <td>' + data[friend]["Name"]+  '</td>\n' +
+                '           <td>' + data[friend]["Author"]+  '</td>\n' +
+                '           <td>' + data[friend]["ISBN"]+  '</td>\n' +
+                '           <td>' + data[friend]["Price"]+  '</td>\n' +
                 '       </tr>\n';
         }
 
@@ -53,7 +49,7 @@
         return table;
     }
     document.getElementById("btnLoadFriends").addEventListener("click", (event) =>{
-        let url = "https://arias-friends-api.herokuapp.com/api/friends/"
+        let url = "https://intense-taiga-52026.herokuapp.com/api/books/"
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200){

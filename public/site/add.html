@@ -11,49 +11,36 @@
 </head>
 <body>
 <div class="container">
-    <h1>Add Friend</h1>
+    <h1>Add Book</h1>
     <div class="container">
         <form method="POST"
-              action="https://arias-friends-api.herokuapp.com/api/friends/">
-            <h2>Please provide your friend information</h2>
+              action="https://intense-taiga-52026.herokuapp.com/api/books/">
+            <h2>Please provide your book information</h2>
             <div class="form-group">
-                <label for="firstName">First Name:</label>
-                <input type="text" name="firstName" id="firstName" class="form-control"
-                       placeholder="First Name">
+                <label for="Name">Name:</label>
+                <input type="text" name="Name" id="Name" class="form-control"
+                       placeholder="Name">
             </div>
             <div class="form-group">
-                <label for="lastName">Last Name:</label>
-                <input type="text" name="lastName" id="lastName" class="form-control"
-                       placeholder="Last Name">
+                <label for="Author">Author:</label>
+                <input type="text" name="Author" id="Author" class="form-control"
+                       placeholder="Author">
             </div>
             <div class="form-group">
-                <label for="phone">Email:</label>
-                <input type="text" name="phone" id="phone" class="form-control"
-                       placeholder="Phone">
+                <label for="ISBN">ISBN:</label>
+                <input type="text" name="ISBN" id="ISBN" class="form-control"
+                       placeholder="ISBN">
             </div>
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email" class="form-control"
-                       placeholder="Email">
-            </div>
-            <div class="form-group">
-                <label for="birthday">Email:</label>
-                <input type="date" name="birthday" id="birthday" class="form-control"
-                       placeholder="Birthday">
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" name="callAnytime" id="callAnytime"
-                       class="form-check-input" value="true">
-                <label for="callAnytime" class="form-check-label">Can I call anytime?</label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Submit">
+                <label for="Price">Price:</label>
+                <input type="number" name="Price" id="Price" class="form-control"
+                       placeholder="5.00" step="0.01" min="0" max="10000">
             </div>
         </form>
 
     </div>
     <div class="container">
-        <button class="btn btn-lg btn-outline-primary" id="btnAddFriend">Add Friend</button>
+        <button class="btn btn-lg btn-outline-primary" id="btnAddFriend">Add Book</button>
     </div>
     <div class="jumbotron" id="output">
 
@@ -61,25 +48,28 @@
 </div>
 <script>
     document.getElementById("btnAddFriend").addEventListener("click", (event) =>{
-        let url = "https://arias-friends-api.herokuapp.com/api/friends/"
+        let url = "https://intense-taiga-52026.herokuapp.com/api/books/"
         let xhttp = new XMLHttpRequest();
+
         xhttp.onreadystatechange = function (){
+            console.log(this.readyState);
+            console.log(this.status);
             if (this.readyState == 4 && this.status == 200){
                 document.getElementById("output").innerHTML =
                     "<pre>" + this.responseText + "</pre>";
             }
         };
         // foo=bar&lorem=ipsum
-        let friendData = "firstName=" + document.getElementById("firstName").value + "&" +
-                         "lastName=" + document.getElementById("lastName").value  + "&" +
-                         "email="  + document.getElementById("email").value  + "&" +
-                         "phone="  + document.getElementById("phone").value  + "&" +
-                         "birthday="  + document.getElementById("birthday").value  + "&" +
-                         "callAnytime="  + document.getElementById("callAnytime").value;
+        let friendData = "Name=" + document.getElementById("Name").value + "&" +
+                         "Author=" + document.getElementById("Author").value  + "&" +
+                         "ISBN="  + document.getElementById("ISBN").value  + "&" +
+                         "Price="  + document.getElementById("Price").value;
         xhttp.open('POST', url, true);
         // Just needed to place this line AFTER opening the object
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhttp.send(friendData);
+        document.getElementById("output").innerHTML = document.getElementById("Name").value + " successfully added" +
+            "\n ready state" + this.readyState + "\n status" + this.status;
     });
 </script>
 </body>
