@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>Add Book</h1>
+    <h1>Edit Book</h1>
     <div class="container">
         <form method="POST"
               action="https://intense-taiga-52026.herokuapp.com/api/books/">
@@ -40,15 +40,24 @@
 
     </div>
     <div class="container">
-        <button class="btn btn-lg btn-outline-primary" id="btnAddFriend">Add Book</button>
+        <button class="btn btn-lg btn-outline-primary" id="btnAddFriend">Submit Changes</button>
     </div>
     <div class="jumbotron" id="output">
 
     </div>
 </div>
 <script>
+    document.addEventListener("DOMContentLoaded", function(){
+        var data = JSON.parse(localStorage.getItem("isbn"));
+        document.getElementById("Name").value = data["Name"];
+        document.getElementById("Author").value = data["Author"];
+        document.getElementById("ISBN").value = data["ISBN"];
+        document.getElementById("Price").value = data["Price"];
+
+    });
+
     document.getElementById("btnAddFriend").addEventListener("click", (event) =>{
-        let url = "https://intense-taiga-52026.herokuapp.com/api/books/"
+        let url = "https://intense-taiga-52026.herokuapp.com/api/books/" + JSON.parse(localStorage.getItem("isbn"))["ISBN"];
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200){
@@ -61,7 +70,7 @@
                          "Author=" + document.getElementById("Author").value  + "&" +
                          "ISBN="  + document.getElementById("ISBN").value  + "&" +
                          "Price="  + document.getElementById("Price").value;
-        xhttp.open('POST', url, true);
+        xhttp.open('PATCH', url, true);
         // Just needed to place this line AFTER opening the object
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhttp.send(friendData);

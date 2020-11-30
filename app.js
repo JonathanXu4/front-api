@@ -6,7 +6,11 @@ let logger = require('morgan');
 
 let indexRouter = require('./routes/index');
 
+const cors = require('cors');
+
 let app = express();
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,6 +23,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+
+app.use(cors());
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
