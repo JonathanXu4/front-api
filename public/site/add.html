@@ -72,6 +72,9 @@
             if (this.readyState == 4 && this.status == 200){
                 document.getElementById("output").innerHTML =
                     "<pre>" + this.responseText + "</pre>";
+
+                localStorage.setItem("message", "Add was successful!");
+                window.location.href="index.html";
             }
         };
         // foo=bar&lorem=ipsum
@@ -83,9 +86,6 @@
         // Just needed to place this line AFTER opening the object
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhttp.send(friendData);
-
-        localStorage.setItem("message", "Add was successful!");
-        window.location.href="index.html";
     });
 </script>
 </body>
