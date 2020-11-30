@@ -4,23 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Server Side Example</title>
+    <title>Library</title>
     <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="container">
-    <h1>Library</h1>
-    <button class="btn-primary btn-lg" id="btnLoadFriends">Load Books</button>
-    <a href="add.html" class="btn-lg">Add a Book</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html" id="logo">Grand Library&trade;</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <input type="text" name="ISBN" id="ISBN" class="form-control" placeholder="ISBN">
-    <button class="btn-primary btn-lg" id="btnFind">Find Book by ISBN</button>
-    <button class="btn-primary btn-lg" id="btnFindA">Find Book by Author</button>
-    <button class="btn-primary btn-lg" id="btnEdit">Edit</button>
-    <button class="btn-primary btn-lg" id="btnDel">Delete</button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="add.html">Add Book</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
+    <input type="text" name="ISBN" id="ISBN" class="form-control" placeholder="Search">
+    <div id="buttonsGroup">
+        <nav>
+            <button class="btn-primary btn-lg" id="btnLoadFriends">Load Books</button>
+            <button class="btn-primary btn-lg" id="btnFind">Find Book by ISBN</button>
+            <button class="btn-primary btn-lg" id="btnFindA">Find Book by Author</button>
+        </nav><main></main><aside>
+            <button class="btn-primary btn-lg" id="btnEdit">Edit</button>
+            <button class="btn-primary btn-lg" id="btnDel">Delete</button>
+        </aside>
+    </div>
     <div class="jumbotron" id="output">
 
     </div>
@@ -59,7 +79,7 @@
     }
     // Load Books
     document.getElementById("btnLoadFriends").addEventListener("click", (event) =>{
-        let url = "https://intense-taiga-52026.herokuapp.com/api/books/"
+        let url = "https://netcentric-back.herokuapp.com/api/books/"
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200){
@@ -80,7 +100,7 @@
         if (isbn == "") {
             document.getElementById("output").innerHTML = "Error 404: Book not found";
         } else {
-            let url = "https://intense-taiga-52026.herokuapp.com/api/books/" + isbn;
+            let url = "https://netcentric-back.herokuapp.com/api/books/" + isbn;
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
@@ -125,7 +145,7 @@
         if (auth == "") {
             document.getElementById("output").innerHTML = "Error 404: Book not found";
         } else {
-            let url = "https://intense-taiga-52026.herokuapp.com/api/books/?author=" + auth;
+            let url = "https://netcentric-back.herokuapp.com/api/books/?author=" + auth;
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
@@ -147,7 +167,7 @@
         if (isbn == "") {
             document.getElementById("output").innerHTML = "Error 404: Book not found";
         } else {
-            let url = "https://intense-taiga-52026.herokuapp.com/api/books/" + isbn;
+            let url = "https://netcentric-back.herokuapp.com/api/books/" + isbn;
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
@@ -166,10 +186,10 @@
     // Edit function
     document.getElementById("btnEdit").addEventListener("click", (event) =>{
         let isbn = document.getElementById("ISBN").value;
-        if (false) {//isbn == "") {
+        if (isbn == "") {
             document.getElementById("output").innerHTML = "Error 404: Book not found";
         } else {
-            let url = "https://intense-taiga-52026.herokuapp.com/api/books/" + isbn;
+            let url = "https://netcentric-back.herokuapp.com/api/books/" + isbn;
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
@@ -185,6 +205,15 @@
             };
             xhttp.open('GET', url, true);
             xhttp.send();
+        }
+    });
+
+    // If there's a message, put it in the output box
+    document.addEventListener("DOMContentLoaded", function() {
+
+        if (localStorage.getItem("message") != null) {
+            document.getElementById("output").innerHTML = localStorage.getItem("message");
+            localStorage.removeItem("message");
         }
     });
 </script>

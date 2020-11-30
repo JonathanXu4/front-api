@@ -28,13 +28,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="beae4942-0296-4396-8797-b75a135116c7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/site/edit.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/site/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/edit.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/site/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +64,7 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.18.3" />
     <property name="javascript.nodejs.core.library.typings.version" value="12.19.7" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/site" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../api-test" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -82,13 +80,6 @@
       <recent name="C:\Users\Chari\Desktop\front-end-client-01\public\site" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -101,6 +92,7 @@
       <workItem from="1605728315019" duration="534000" />
       <workItem from="1605737830749" duration="3317000" />
       <workItem from="1606692943945" duration="16607000" />
+      <workItem from="1606709889144" duration="3973000" />
     </task>
     <task id="LOCAL-00001" summary="Front end working with GET all and POST">
       <created>1605753822574</created>
@@ -125,6 +117,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Front end working with GET all and POST" />
@@ -139,6 +132,10 @@
       <screen x="-1920" y="-80" width="1920" height="1080" />
     </state>
     <state x="-1449" y="32" key="CommitChangelistDialog2/0.0.1440.900/-1920.-80.1920.1080@-1920.-80.1920.1080" timestamp="1605753822378" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1606710050640">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1606710050640" />
     <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1606693215014">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
