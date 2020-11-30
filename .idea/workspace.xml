@@ -28,6 +28,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="beae4942-0296-4396-8797-b75a135116c7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/site/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/add.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +89,7 @@
       <workItem from="1605728315019" duration="534000" />
       <workItem from="1605737830749" duration="3317000" />
       <workItem from="1606692943945" duration="16607000" />
-      <workItem from="1606709889144" duration="7079000" />
+      <workItem from="1606709889144" duration="7393000" />
     </task>
     <task id="LOCAL-00001" summary="Front end working with GET all and POST">
       <created>1605753822574</created>
