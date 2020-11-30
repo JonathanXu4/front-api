@@ -33,9 +33,9 @@
     <input type="text" name="ISBN" id="ISBN" class="form-control" placeholder="Search">
     <div id="buttonsGroup">
         <nav>
-            <button class="btn-primary btn-lg" id="btnLoadFriends">Load Books</button>
-            <button class="btn-primary btn-lg" id="btnFind">Find Book by ISBN</button>
-            <button class="btn-primary btn-lg" id="btnFindA">Find Book by Author</button>
+            <button class="btn-primary btn-lg" id="btnLoadFriends">Show all books</button>
+            <button class="btn-primary btn-lg" id="btnFind">Find book by ISBN</button>
+            <button class="btn-primary btn-lg" id="btnFindA">Find book by author</button>
         </nav><main></main><aside>
             <button class="btn-primary btn-lg" id="btnEdit">Edit</button>
             <button class="btn-primary btn-lg" id="btnDel">Delete</button>
@@ -56,7 +56,7 @@
             '           <th scope="col">Author</th> \n'+
             '           <th scope="col">ISBN</th> \n'+
             '           <th scope="col">Price</th> \n'+
-            '           <th scope="col">Select</th> \n' +
+            //'           <th scope="col">Select</th> \n' +
             '       </tr>\n' +
             '   </thead>\n' +
             '   <tbody>\n';
@@ -68,7 +68,7 @@
                 '           <td>' + data[friend]["Author"]+  '</td>\n' +
                 '           <td>' + data[friend]["ISBN"]+  '</td>\n' +
                 '           <td>' + data[friend]["Price"]+  '</td>\n' +
-                '           <td><input type="checkbox"></td>\n' +
+                //'           <td><input type="checkbox"></td>\n' +
                 '       </tr>\n';
         }
 
@@ -149,8 +149,12 @@
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("output").innerHTML =
-                        CreateTable(JSON.parse(this.responseText));
+                    if (JSON.parse(this.responseText) == "") {
+                        document.getElementById("output").innerHTML = "Error 404: Book not found";
+                    } else {
+                        document.getElementById("output").innerHTML =
+                            CreateTable(JSON.parse(this.responseText));
+                    }
                 } else if (this.readyState == 4 && this.status == 404) {
                     document.getElementById("output").innerHTML =
                         "Error 404: Book not found";
@@ -193,9 +197,6 @@
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    //document.getElementById("output").innerHTML = JSON.parse(this.responseText)["Author"];
-
-
                     localStorage.setItem("isbn", this.responseText);
                     window.location.href="edit.html";
                 } else if (this.readyState == 4 && this.status == 404) {
