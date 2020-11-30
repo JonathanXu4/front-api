@@ -46,6 +46,35 @@
     </div>
 </div>
 <script>
+    // Check to see if ISBN is valid or not
+    function isISBN(str) {
+        // Remove all dashes
+        str = str.replace("-","");
+        // ISBN must be 10 or 13 digits
+        if (str.length !== 10 && str.length !== 13) {
+            return false;
+        }
+        let sum = 0;
+        if (str.length === 10) {
+            for (let i = 0; i < 10; i++) {
+                sum += parseInt(str[i]) * (10 - i);
+            }
+            return sum % 11 == 0;
+        } else if (str.length === 13) {
+            for (let i = 0; i < 13; i++) {
+                // Multiply every odd number by 3, even by 1
+                // Add to sum
+                if (i % 2 == 1) {
+                    sum += 3 * parseInt(str[i]);
+                } else {
+                    sum += parseInt(str[i]);
+                }
+            }
+            return sum % 10 == 0;
+        }
+        return false;
+    }
+
     function CreateTable(data){
         let table = "";
         table =
@@ -97,7 +126,9 @@
     // Find Books by ISBN
     document.getElementById("btnFind").addEventListener("click", (event) =>{
         let isbn = document.getElementById("ISBN").value;
-        if (isbn == "") {
+        if (!isISBN(isbn)) {
+            document.getElementById("output").innerHTML = "Error: Invalid ISBN";
+        } else if (isbn == "") {
             document.getElementById("output").innerHTML = "Error 404: Book not found";
         } else {
             let url = "https://netcentric-back.herokuapp.com/api/books/" + isbn;
@@ -168,7 +199,9 @@
     // Delete function
     document.getElementById("btnDel").addEventListener("click", (event) =>{
         let isbn = document.getElementById("ISBN").value;
-        if (isbn == "") {
+        if (!isISBN(isbn)) {
+            document.getElementById("output").innerHTML = "Error: Invalid ISBN";
+        } else if (isbn == "") {
             document.getElementById("output").innerHTML = "Error 404: Book not found";
         } else {
             let url = "https://netcentric-back.herokuapp.com/api/books/" + isbn;
@@ -190,7 +223,9 @@
     // Edit function
     document.getElementById("btnEdit").addEventListener("click", (event) =>{
         let isbn = document.getElementById("ISBN").value;
-        if (isbn == "") {
+        if (!isISBN(isbn)) {
+            document.getElementById("output").innerHTML = "Error: Invalid ISBN";
+        } else if (isbn == "") {
             document.getElementById("output").innerHTML = "Error 404: Book not found";
         } else {
             let url = "https://netcentric-back.herokuapp.com/api/books/" + isbn;

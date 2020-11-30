@@ -65,6 +65,35 @@
     </div>
 </div>
 <script>
+    // Check to see if ISBN is valid or not
+    function isISBN(str) {
+        // Remove all dashes
+        str = str.replace("-","");
+        // ISBN must be 10 or 13 digits
+        if (str.length !== 10 && str.length !== 13) {
+            return false;
+        }
+        let sum = 0;
+        if (str.length === 10) {
+            for (let i = 0; i < 10; i++) {
+                sum += parseInt(str[i]) * (10 - i);
+            }
+            return sum % 11 == 0;
+        } else if (str.length === 13) {
+            for (let i = 0; i < 13; i++) {
+                // Multiply every odd number by 3, even by 1
+                // Add to sum
+                if (i % 2 == 1) {
+                    sum += 3 * parseInt(str[i]);
+                } else {
+                    sum += parseInt(str[i]);
+                }
+            }
+            return sum % 10 == 0;
+        }
+        return false;
+    }
+
     document.addEventListener("DOMContentLoaded", function(){
         let data = JSON.parse(localStorage.getItem("isbn"));
         document.getElementById("Name").value = data["Name"];
@@ -75,26 +104,31 @@
     });
 
     document.getElementById("btnAddFriend").addEventListener("click", (event) =>{
-        let url = "https://netcentric-back.herokuapp.com/api/books/" + JSON.parse(localStorage.getItem("isbn"))["ISBN"];
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function (){
-            if (this.readyState == 4 && this.status == 200){
-                document.getElementById("output").innerHTML =
-                    "<pre>" + this.responseText + "</pre>";
-                localStorage.removeItem("isbn");
-                localStorage.setItem("message", "Edit was successful!");
-                window.location.href="index.html";
-            }
-        };
-        // foo=bar&lorem=ipsum
-        let friendData = "Name=" + document.getElementById("Name").value + "&" +
-                         "Author=" + document.getElementById("Author").value  + "&" +
-                         "ISBN="  + document.getElementById("ISBN").value  + "&" +
-                         "Price="  + document.getElementById("Price").value;
-        xhttp.open('PATCH', url, true);
-        // Just needed to place this line AFTER opening the object
-        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhttp.send(friendData);
+        let isbn = document.getElementById("ISBN").value;
+        if (!isISBN(isbn)) {
+            document.getElementById("output").innerHTML = "Error: Invalid ISBN";
+        } else {
+            let url = "https://netcentric-back.herokuapp.com/api/books/" + JSON.parse(localStorage.getItem("isbn"))["ISBN"];
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("output").innerHTML =
+                        "<pre>" + this.responseText + "</pre>";
+                    localStorage.removeItem("isbn");
+                    localStorage.setItem("message", "Edit was successful!");
+                    window.location.href = "index.html";
+                }
+            };
+            // foo=bar&lorem=ipsum
+            let friendData = "Name=" + document.getElementById("Name").value + "&" +
+                "Author=" + document.getElementById("Author").value + "&" +
+                "ISBN=" + document.getElementById("ISBN").value + "&" +
+                "Price=" + document.getElementById("Price").value;
+            xhttp.open('PATCH', url, true);
+            // Just needed to place this line AFTER opening the object
+            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhttp.send(friendData);
+        }
     });
 </script>
 </body>
